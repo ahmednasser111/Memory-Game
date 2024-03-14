@@ -2,7 +2,14 @@ let start = document.querySelector('.splash input[type= submit]');
 let name = sessionStorage['name'];
 let success = document.getElementById('true');
 let fail = document.getElementById('false');
-let duration = 1000;
+let duration = 2000;
+
+const speed = document.getElementById('speed');
+speed.addEventListener('change', () =>{
+	duration = +speed.options[speed.selectedIndex].value;
+});
+
+
 start.addEventListener('click', function()  {
 	if (!name){
 		name = prompt("Please enter your name: ").trim();
@@ -34,10 +41,13 @@ container.innerHTML = '';
 blocks.forEach(block => container.appendChild(block));
 
 
-let flipped;
+let win = document.getElementById('splashScreen');
+
+let flipped, counter = 0, misses = 0;
 blocks.forEach(block => block.addEventListener('click', function (){
 	block.classList.add('flip');
 	if (flipped){
+		counter++;
 		blocks.forEach(block => block.classList.add('banned'));
 			
 		let n = block.getAttribute('data');
@@ -48,8 +58,8 @@ blocks.forEach(block => block.addEventListener('click', function (){
 				blocks.forEach(block => block.classList.remove('banned'));
 				flipped = undefined;
 			}, duration);
-			let tries = parseInt(document.querySelector('.tries span').textContent) + 1;
-			document.querySelector('.tries span').textContent = tries;
+
+			document.querySelector('.tries span').textContent = ++misses;
 			fail.play();
 		}
 		else{
@@ -59,6 +69,14 @@ blocks.forEach(block => block.addEventListener('click', function (){
 			flipped = undefined;
 			success.play();
 		}
+		document.querySelector('.accuracy').textContent = Math.round((counter - misses) / counter * 100);
+
+		if (counter - misses === 10){
+			win.style.display = 'block';
+			setTimeout(function(){
+				win.style.display = 'none';
+			}, 2000);
+		}
 		
 	}
 	else{
@@ -66,3 +84,10 @@ blocks.forEach(block => block.addEventListener('click', function (){
 		flipped.classList.add('banned');	
 	}
 }));
+
+
+
+
+
+
+
