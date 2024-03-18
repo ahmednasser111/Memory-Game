@@ -10,22 +10,22 @@ input:focus{
 input{
 	border: none;
 }
-@media only screen and (max-width: 720px) {
+@media (max-width: 720px) {
 	body {
 		zoom: 70%;
 	}
 }
-@media only screen and (max-width: 525px) {
+@media (max-width: 525px) {
 	body {
 		zoom: 60%;
 	}
 }
-@media only screen and (max-width: 445px) {
+@media (max-width: 445px) {
 	body {
 		zoom: 50%;
 	}
 }
-@media only screen and (max-width: 360px) {
+@media (max-width: 360px) {
 	body {
 		zoom: 40%;
 	}
