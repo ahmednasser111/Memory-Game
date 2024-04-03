@@ -30,6 +30,11 @@ input{
 		zoom: 40%;
 	}
 }
+@media only screen and (max-width: 300px) {
+	body {
+		zoom: 30%;
+	}
+}
 .splash{
 	position: fixed;
 	background-color: rgba(21, 106, 176, 0.594);
@@ -62,7 +67,8 @@ input{
 
 .blocks-container{
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(4, 1fr);
 	gap: 20px;
 	max-width: 95%;
 	margin: 10px auto;
